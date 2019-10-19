@@ -1,0 +1,146 @@
+body{
+    background-image: url('./imgs/bg.jpg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+header{
+    background-color: #303030;
+}
+
+footer{
+    display: flex;
+    justify-content: center;
+    height: 3vh;
+    max-height: 3vh;
+}   
+
+.admin{
+    color: darkred;
+}
+
+.avatar{
+    max-width: 96px;
+    max-height: 96px;
+    border: 1px solid  grey;
+    border-radius: 5px;
+}
+
+.btn-crud-forum{
+    position: relative;
+    left: 710px;
+}
+
+
+
+.char-card{
+    width: 800px;
+    border: 1px silver solid;
+    border-radius: 10px;
+    margin-bottom: 1vh;
+    display: flex;
+}
+
+.char-pic{
+    width: 15vw;
+    margin: 1vh 1vh 1vh 1vh;
+    border: 1px solid silver;
+    border-radius: 10px;
+}
+
+.event{
+    width: 15vw;
+    margin: 10px 1vw 0 1vw;
+
+}
+
+.event-table{
+    margin: 0 2vw 0 1vw;
+}
+
+.forum-dd{
+    margin-left: 5px;
+}
+.forum-infos{
+    border-radius: 5px;
+    height: 100%;
+    background-color: #303030;
+}
+
+.gear-icon{
+    max-width: 50px;
+}
+
+.header_logo{
+    max-height: 5vh;
+}
+
+.job-icon{
+    max-width: 50px;
+    max-height: 50px;
+}
+
+.margin-1vw{
+    margin-left: 1vw;
+    margin-right: 1vw;
+}
+
+.member{
+    color: blueviolet;
+}
+
+.message-forum{
+    width: 800px;
+    border-left: 1px solid silver;
+    padding: 2vh 1vw 2vh 1vw;
+}
+
+.post-forum{
+    background-color: #474747;
+    margin: 0 1vw 1vw 1vw;
+    border: 1px solid silver;
+    border-radius: 5px;
+    
+}
+
+.raid{
+    max-width: 20rem;
+}
+
+.raids{
+    position: absolute;
+    right: 1vw;
+    top: 10vh;
+    padding: 1vh 1vw 1vh 1vw;
+    border: 1px solid gray;
+}
+
+#app{
+    flex: 1;
+    background-color: #303030;
+    padding: 0 1vw 0 1vw;
+
+}
+
+#cke_wysiwyg{
+    position: relative;
+    left: 13vw;
+}
+
+#container{
+    max-width: 1024px;
+    min-height: 100vh;
+    margin: auto;
+    border-left: 1px solid gray;
+    border-right: 1px solid grey;
+    display: flex;
+    flex-direction: column;
+}
+
+#footer{
+    background-color: #303030;
+}
+
+#logout-form{
+    display: none;
+}
