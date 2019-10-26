@@ -27,17 +27,59 @@ class ForumController extends Controller
     public function index()
     {
         $cats = Category::get();
-        return view('forum/index', ['categories' =>$cats]);
+        $user = Auth::user();
+        $user = Auth::user();
+        $notifs = [];
+
+        foreach ($cats as $category)
+        {
+            if(!empty($user->notifications))
+            {
+                foreach ($user->notifications as $notif)
+                {
+                    if ($notif->data['category_id'] == $category->id)
+                    {
+                        $notifs[] = $notif->data['category_id'];
+                    }
+                }
+            }
+        }
+
+        return view('forum/index', [
+            'categories' => $cats,
+            'notifs' => $notifs
+        ]);
     }
 
+    /**
+     * @param $cat
+     * @return array|\Illuminate\Contracts\View\Factory|\Illuminate\View\View|mixed
+     */
     public function showCat($cat)
     {
         $forumCategory = Category::find($cat);
         $catTopics = Topic::where('category_id', '=', $cat)->get();
+        $user = Auth::user();
+        $notifs = [];
+
+        foreach ($catTopics as $topic)
+        {
+            if(!empty($user->notifications))
+            {
+                foreach ($user->notifications as $notif)
+                {
+                    if ($notif->data['topic_id'] == $topic->id)
+                    {
+                        $notifs[] = $notif->data['topic_id'];
+                    }
+                }
+            }
+        }
 
         return view('forum/category', [
             'cat' => $forumCategory,
-            'topics' => $catTopics
+            'topics' => $catTopics,
+            'notifs' => $notifs
         ]);
     }
 
@@ -45,12 +87,27 @@ class ForumController extends Controller
     public function showMessages(FormBuilder $formBuilder, $topic)
     {
         $messages = Message::where('topic_id', '=', $topic)->get();
+        $user = Auth::user();
+
+        foreach ($messages as $message)
+        {
+            if(!empty($user->notifications))
+            {
+                foreach ($user->notifications as $notif)
+                {
+                    if ($notif->data['topic_id'] == $message->topic_id)
+                    {
+                        $notif->delete();
+                    }
+                }
+            }
+        }
 
         $form = $this->form(MessageForm::class,[
             'method' =>'POST',
             'url' => route('write_message', [
                 'topic' => $topic
-            ]) 
+            ])
         ]);
 
         return view('forum/topic', [
@@ -64,7 +121,7 @@ class ForumController extends Controller
         $form = $this->form(MessageForm::class);
         $user = Auth::user();
         $users = User::get();
-        $topicObj = Topic::find($topic)->get(); 
+        $topicObj = Topic::find($topic)->get();
         foreach ($users as $key => $value) {
             if ($value->name === $user->name) {
                 $users->forget($key);
@@ -75,10 +132,9 @@ class ForumController extends Controller
             $message = new Message([
                 'message' => $request->wysiwyg,
                 'topic_id' => $topic
-            ]); 
+            ]);
 
             $user->messages()->save($message);
-            $message->save();
 
             Notification::send($users, new ForumNewMsg($message));
 
@@ -120,7 +176,7 @@ class ForumController extends Controller
     public function newTopic(FormBuilder $formBuilder, $cat)
     {
         $form = $this->form(TopicForm::class, [
-            'method' => 'POST', 
+            'method' => 'POST',
             'url' => route('forum_insert_topic', [
                 'cat' => $cat
             ])
@@ -135,7 +191,7 @@ class ForumController extends Controller
     {
         $form = $this->form(TopicForm::class);
         $user = Auth::user();
-        // dd($user->id);
+        $users = User::get();
         $category = Category::find($cat);
 
         if($form->isValid()) {
@@ -144,18 +200,20 @@ class ForumController extends Controller
                 'title' => $request->name,
                 'locked' => false,
                 'user_id' => $user->id
-            ]); 
-            
+            ]);
+
             $category->topics()->save($topic);
             $topic->save();
 
             $message = new Message([
                 'message' => $request->wysiwyg,
                 'topic_id' => $topic->id
-            ]); 
-            
+            ]);
+
             $user->messages()->save($message);
             $message->save();
+
+            Notification::send($users, new ForumNewMsg($message));
 
             return redirect()->route('forum_messages',[
                 'topic' => $topic
@@ -190,6 +248,7 @@ class ForumController extends Controller
         $user = $this->user->findOne($id);
         $role= $this->role->findOne(4);
         $role->users()->attach($user);
-    
-    }    
+
+        return redirect()->route();
+    }
 }

@@ -24,7 +24,6 @@ class EventController extends Controller
         $events = Event::get();
         $user = Auth::user();
 
-        // dd($events);
         return view('events', ['events' => $events, 'user'=> $user]);
     }
 
@@ -59,12 +58,12 @@ class EventController extends Controller
 
 
     /**
-     * stores an event 
+     * stores an event
      * @param request
      */
     public function storeEvent(Request $request)
     {
-        
+
         $form = $this->form(EventForm::class);
 
         $validateData = $request->validate([
@@ -72,11 +71,11 @@ class EventController extends Controller
             'description' => 'string|required',
             'date' => 'date|required'
         ]);
-        
+
         if($form->isValid()) {
             $date = $request->date . ' ' . $request->hour;
             $datetime = new DateTime($date);
-             
+
             $event = new Event([
                 'name' => $request->name,
                 'description' => $request->description,
@@ -87,7 +86,7 @@ class EventController extends Controller
             $users = User::all();
             foreach ($users as $user) {
                 $user->events()->attach($event->id);
-            }           
+            }
 
             return redirect()->route('events');
         }
@@ -115,7 +114,7 @@ class EventController extends Controller
             $user = DB::table('users')->find($participant->user_id);
             $participants[] = $user;
         }
-        
+
         return view('admin', [
             'events' => $events,
             'name' => $event,
@@ -139,7 +138,7 @@ class EventController extends Controller
 
                 DB::tables('events')->where($event->id)->delete();
             }
-            
+
         }
 
         return redirect()->route('admin');

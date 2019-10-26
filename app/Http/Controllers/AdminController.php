@@ -10,15 +10,17 @@ use App\Repositories\UserRepoInterface;
 use App\Repositories\EventRepoInterface;
 
 class AdminController extends Controller
-{ 
+{
 
+    /**
+     * @return array|\Illuminate\Contracts\View\Factory|\Illuminate\View\View|mixed
+     */
     public function index()
     {
         $events = DB::table('events')->select('id', 'name')->get();
         $roles = Role::select('id', 'name')->get();
         $users = User::select('id', 'name')->get();
-        // dd($users);
-        
+
         return view('admin', [
             'events' => $events,
             'roles' => $roles,
@@ -28,6 +30,6 @@ class AdminController extends Controller
 
     public function changeRole()
     {
-        
+
     }
 }

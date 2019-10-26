@@ -2,6 +2,9 @@
 
 namespace App\Notifications;
 
+use App\Category;
+use App\Message;
+use App\Topic;
 use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -16,9 +19,17 @@ class ForumNewMsg extends Notification
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(Message $message)
     {
-        //
+        $topic = Topic::select('id', 'category_id')
+            ->where('id', '=', $message->topic_id)
+            ->first();
+        $category = Category::select('id')
+            ->where('id', '=', $topic->category_id)
+            ->first();
+
+        $this->topic = $topic;
+        $this->category = $category;
     }
 
     /**
@@ -41,7 +52,8 @@ class ForumNewMsg extends Notification
     public function toArray($notifiable)
     {
         return [
-            
+            'category_id' => $this->category->id,
+            'topic_id' => $this->topic->id
         ];
     }
 }

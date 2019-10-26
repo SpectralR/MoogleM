@@ -4,6 +4,10 @@ body{
     background-attachment: fixed;
 }
 
+div > .gear-icon{
+    margin-bottom: 5px;
+}
+
 header{
     background-color: #303030;
 }
@@ -13,7 +17,7 @@ footer{
     justify-content: center;
     height: 3vh;
     max-height: 3vh;
-}   
+}
 
 .admin{
     color: darkred;
@@ -31,14 +35,18 @@ footer{
     left: 710px;
 }
 
-
-
 .char-card{
     width: 800px;
     border: 1px silver solid;
     border-radius: 10px;
-    margin-bottom: 1vh;
+    margin: auto;
     display: flex;
+}
+
+.char-gear{
+    margin: auto;
+    margin-bottom: 1vh;
+    margin-top: 1vh;
 }
 
 .char-pic{
@@ -46,6 +54,23 @@ footer{
     margin: 1vh 1vh 1vh 1vh;
     border: 1px solid silver;
     border-radius: 10px;
+}
+
+.char-title{
+    margin: 1vh 0 0 1vw;
+}
+
+.class{
+    margin: 0 1vw 1vh 1vw;
+}
+
+.classes > tr {
+    text-align: center;
+}
+
+.current-job{
+    margin-left: 2vw;
+    text-align: center;
 }
 
 .event{
@@ -95,12 +120,16 @@ footer{
     padding: 2vh 1vw 2vh 1vw;
 }
 
+.notif{
+    color: #00BC8C;
+}
+
 .post-forum{
     background-color: #474747;
     margin: 0 1vw 1vw 1vw;
     border: 1px solid silver;
     border-radius: 5px;
-    
+
 }
 
 .raid{
