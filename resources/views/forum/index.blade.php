@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+    {{ Breadcrumbs::render('forum') }}
     <table class='table table-dark table-hover'>
         <thead>
             <tr>

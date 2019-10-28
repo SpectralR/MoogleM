@@ -19,6 +19,10 @@ footer{
     max-height: 3vh;
 }
 
+td > a:hover{
+    text-decoration: none;
+}
+
 .admin{
     color: darkred;
 }
@@ -30,13 +34,21 @@ footer{
     border-radius: 5px;
 }
 
+.breadcrumb{
+    background: none;
+}
+
+.breadcrumb-item > a:hover{
+    text-decoration: none;
+}
+
 .btn-crud-forum{
     position: relative;
     left: 710px;
 }
 
 .char-card{
-    width: 800px;
+    width: 1024px;
     border: 1px silver solid;
     border-radius: 10px;
     margin: auto;
@@ -120,6 +132,10 @@ footer{
     padding: 2vh 1vw 2vh 1vw;
 }
 
+.new-topic{
+    font-size: 2rem;
+}
+
 .notif{
     color: #00BC8C;
 }
@@ -129,7 +145,6 @@ footer{
     margin: 0 1vw 1vw 1vw;
     border: 1px solid silver;
     border-radius: 5px;
-
 }
 
 .raid{
@@ -137,11 +152,16 @@ footer{
 }
 
 .raids{
-    position: absolute;
+    max-width: 50%;
     right: 1vw;
     top: 10vh;
     padding: 1vh 1vw 1vh 1vw;
     border: 1px solid gray;
+    margin: auto;
+}
+
+.slick-slide{
+    margin: 0 1vw 0 1vw;
 }
 
 #app{
@@ -157,7 +177,7 @@ footer{
 }
 
 #container{
-    max-width: 1024px;
+    max-width: 1280px;
     min-height: 100vh;
     margin: auto;
     border-left: 1px solid gray;

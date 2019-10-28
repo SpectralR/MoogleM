@@ -93,6 +93,7 @@ class ForumController extends Controller
      */
     public function showMessages(FormBuilder $formBuilder, $topic)
     {
+        $thisTopic = Topic::where('id', '=', $topic)->first();
         $messages = Message::where('topic_id', '=', $topic)->get();
         $user = Auth::user();
 
@@ -119,7 +120,8 @@ class ForumController extends Controller
 
         return view('forum/topic', [
             'messages' => $messages,
-            'form' => $form
+            'form' => $form,
+            'topic' => $thisTopic
         ]);
     }
 
@@ -309,6 +311,10 @@ class ForumController extends Controller
         return redirect()->back()->with('success', $user->name . ' has been banned');
     }
 
+    /**
+     * @param $id
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function unban($id)
     {
         $user = User::find($id);

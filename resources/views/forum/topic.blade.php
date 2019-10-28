@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+    {{ Breadcrumbs::render('message', $topic) }}
     @if(session('error'))
         <div class="alert alert-danger">
             {{ session('error') }}

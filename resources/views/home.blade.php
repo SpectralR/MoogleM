@@ -17,25 +17,24 @@
     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit eum fugiat quam placeat alias, aspernatur facilis voluptatum aut ea magni similique inventore est numquam optio, neque ex pariatur ullam veniam.</p>
     <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Assumenda voluptatum ad cum doloribus dolore. Explicabo excepturi magnam voluptate nisi eaque, labore nam molestiae molestias quaerat, tenetur maxime. Iusto, unde pariatur!</p>
     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos enim neque optio magnam possimus minima nobis delectus dolorum doloremque vel, placeat eveniet vitae voluptatem voluptate asperiores odit earum repudiandae officiis.</p>
-    
-    <aside>
-        <div>
 
-        </div>
+    <aside>
         <div class='jumbotron raids'>
             <h4>Raids</h4>
+            <div class="slicked">
             @foreach($instances as $instance)
             <div class="card border-secondary mb-3 raid">
-                
                 <div class="card-body">
-                    <h4 class="card-title"><img src="https://xivapi.com{{ $instance->Icon }}" alt="">
+                    <h4 class="card-title"><img src="https://xivapi.com{{ $instance->Icon }}" alt="{{ $instance->Name }}">
                     {{ $instance->Name }}</h4>
                     <p class="card-text"><span class="badge badge-pill badge-success">Success</span> OR <span class="badge badge-pill badge-danger">Failure </span></p>
                 </div>
             </div>
             @endforeach
+            </div>
         </div>
     </aside>
 @endsection
+
 <!--<span class="badge badge-pill badge-success">Success</span>
 <span class="badge badge-pill badge-danger">Danger</span>

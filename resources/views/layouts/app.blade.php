@@ -22,7 +22,8 @@
     <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('Trumbowyg/dist/ui/trumbowyg.min.css') }}">
-
+    <link rel="stylesheet" href="{{ asset('slick/slick.css') }}">
+    <link rel="stylesheet" href="{{ asset('slick/slick-theme.css') }}">
 </head>
 <body>
     <div id='container'>
@@ -35,7 +36,7 @@
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                         <span class="navbar-toggler-icon"></span>
                     </button>
-    
+
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
                         <!-- Right Side Of Navbar -->
@@ -54,8 +55,8 @@
                                 </li> --}}
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{ route('forum') }}">{{ __('Forum') }}</a>
-                                </li>                                    
-                            @guest        
+                                </li>
+                            @guest
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
                                 </li>
@@ -74,18 +75,18 @@
                                         <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                             {{ Auth::user()->name }} <span class="caret"></span>
                                         </a>
-        
+
                                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                             <a class="dropdown-item" href="{{ route('member', ['id' => Auth::user()->id ]) }}">
                                                 {{ __('Dashboard') }}
                                             </a>
-        
+
                                             <a class="dropdown-item" href="{{ route('logout') }}"
                                             onclick="event.preventDefault();
                                                 document.getElementById('logout-form').submit();">
                                                 {{ __('Logout') }}
                                             </a>
-        
+
                                             <form id="logout-form" action="{{ route('logout') }}" method="POST">
                                                 @csrf
                                             </form>
@@ -98,7 +99,7 @@
             </nav>
         </header>
         <div id="app">
-           
+
 
             <main class="py-4">
                 @yield('content')
@@ -109,7 +110,9 @@
     </footer>
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script src="{{ asset('Trumbowyg/dist/trumbowyg.min.js') }}"></script>
-<script src="{{ asset('js/wysiwyg.js') }}"></script>
+    <script src="{{ asset('Trumbowyg/dist/trumbowyg.min.js') }}"></script>
+    <script src="{{ asset('js/wysiwyg.js') }}"></script>
+    <script src="{{ asset('slick/slick.min.js') }}"></script>
+    <script src="{{ asset('js/moogle.js') }}"></script>
 </body>
 </html>

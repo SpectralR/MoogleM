@@ -1,8 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
+    {{ Breadcrumbs::render('category', $cat) }}
     @auth
-        <a href="{{ route('forum_create_topic', ['cat' => $cat]) }}"><i class="fas fa-plus-square"></i></a>
+        <a href="{{ route('forum_create_topic', ['cat' => $cat]) }}" class="new-topic"><i class="fas fa-comment-medical"></i></a>
     @endauth
     <table class='table table-dark table-hover'>
         <thead>
