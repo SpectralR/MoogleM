@@ -54,7 +54,7 @@ class User extends Authenticatable
 
     public function isAdministrator() {
         return $this->roles()->where('name', 'Administrator')->exists();
-        
+
      }
 
      public function isModerator() {
@@ -62,7 +62,7 @@ class User extends Authenticatable
      }
 
      public function isBanned() {
-        return $this->roles()->where('name', 'Banned')->exists();
+        return $this->roles()->where('id', '=', 4)->exists();
      }
 
     /**

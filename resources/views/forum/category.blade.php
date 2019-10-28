@@ -11,7 +11,7 @@
                 <th>Topic Name</th>
                 <th>Topic creation</th>
                 <th>Number of messages</th>
-                @if ($topics->first()->user_id == Auth::user()->id || Auth::user()->isAdministrator() || Auth::user()->isModerator())
+                @if (isset($topics->first()->user_id) && $topics->first()->user_id == Auth::user()->id || Auth::user()->isAdministrator() || Auth::user()->isModerator())
                     <th>Lock</th>
                 @endif
             </tr>

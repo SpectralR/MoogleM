@@ -1,10 +1,16 @@
 @extends('layouts.app')
 
 @section('content')
-   {{-- <div class='btn-group' role='group'>
-       <a href="" type='button' class='btn btn-secondary'>Show event participants</a>
-       <a href="" type='button' class='btn btn-secondary'></a>
-   </div> --}}
+    @if(session('error'))
+        <div class="alert alert-danger">
+            {{ session('error') }}
+        </div>
+    @endif
+    @if(session('success'))
+        <div class="alert alert-success">
+            {{ session('success') }}
+        </div>
+    @endif
    <h2>Event Management</h2>
    <h4>Who participates in an event</h4>
     <form action="{{ route('list_participants') }}" method='POST'   >
@@ -17,18 +23,18 @@
         <button type="submit" class='btn btn-outline-success'><i class=' far fa-check-square'></i></button>
     </form>
 
-    <h4>Clean event</h4>
-    <a href="{{ route('clean_event') }}" type='button'>Clean!</a>
-
     @isset($results)
         <h4>List of participating people to {{ $name->name }}</h4>
         @foreach ($results as $participant)
-            <p>{{ $participant->username }}</p>
+            <p>{{ $participant->name }}</p>
         @endforeach
     @endisset
 
+   <h4>Clean event</h4>
+   <a href="{{ route('clean_event') }}" type='button'>Clean!</a>
+
     <h2>Role Management</h2>
-    <form action="{{ route('list_participants') }}" method='POST'   >
+    <form action="{{ route('change_role') }}" method='POST'   >
             @csrf
             <select name="user" id="user">
                 @foreach ($users as $user)
@@ -43,5 +49,5 @@
             <button type="submit" class='btn btn-outline-success'><i class=' far fa-check-square'></i></button>
         </form>
 
-    <h2>Static Management</h2>
+{{--    <h2>Static Management</h2>--}}
 @endsection

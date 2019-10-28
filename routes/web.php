@@ -40,14 +40,16 @@ Route::prefix('forum')->group(function(){
     Route::get('/{topic}/lock', 'ForumController@lockTopic')->name('lock_topic');
     Route::get('/{topic}/unlock', 'ForumController@unlockTopic')->name('unlock_topic');
     Route::get('/ban/{id}', 'ForumController@banUser')->middleware('adminModo')->name('ban_user');
+    Route::get('/unban/{id}', 'ForumController@unban')->middleware('adminModo')->name('unban_user');
 });
 
-Route::prefix('admin')->group(function(){
+Route::prefix('admin')->middleware('adminModo')->group(function(){
     Route::get('/', 'AdminController@index')->name('admin');
     Route::post('/listParticipants', 'EventController@listParticipants')->name('list_participants');
     Route::get('/event', 'EventController@addEvent')->name('addEvent');
     Route::post('/event', 'EventController@storeEvent')->name('storeEvent');
     Route::get('/cleanevent', 'EventController@cleanEvent')->name('clean_event');
+    Route::post('/changerole', 'AdminController@changeRole')->name('change_role');
 });
 
 Auth::routes();

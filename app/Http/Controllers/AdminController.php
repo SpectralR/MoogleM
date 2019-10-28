@@ -28,8 +28,19 @@ class AdminController extends Controller
         ]);
     }
 
-    public function changeRole()
+    public function changeRole(Request $request)
     {
+        $user = User::find($request->user);
+        $roles = $user->roles()->get();
 
+        if ($roles->contains($request->role))
+        {
+            return redirect()->route('admin')->with('error', $user->name . ' has already that role.' );
+        } else
+        {
+            $user->roles()->attach($request->role);
+        }
+
+        return redirect()->route('admin')->with('success', 'Role changed successfully for ' . $user->name );
     }
 }

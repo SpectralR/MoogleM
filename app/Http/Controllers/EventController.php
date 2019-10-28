@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Role;
 use App\User;
 use DateTime;
 use App\Event;
@@ -98,27 +99,28 @@ class EventController extends Controller
      */
     public function listParticipants(Request $request)
     {
+        $users = User::select('id', 'name')->get();
+        $roles = Role::select('id', 'name')->get();
         $events = Event::select('id', 'name')->get();
-        $event = Event::find($request->event);
-        global $event;
-
-        $eventParticipants = User::wherehas('events', function($p){
-                $p->where('event_user.event_id', $event->id);
-                $p->where('event_user.participate', 'y');
-            })
+        $event = Event::find($request->event)->first();
+        $eventParticipants = Event::join('event_user', 'event_id', '=', 'events.id')
+            ->where('id', '=', $event->id)
+            ->where('participate', '=', 'y')
             ->get();
+
         $participants = [];
 
         foreach ($eventParticipants as $participant) {
-            dd($participant);
-            $user = DB::table('users')->find($participant->user_id);
+            $user = User::find($participant->user_id);
             $participants[] = $user;
         }
 
         return view('admin', [
             'events' => $events,
             'name' => $event,
-            'results' => $participants
+            'results' => $participants,
+            'users' => $users,
+            'roles' => $roles
         ]);
     }
 

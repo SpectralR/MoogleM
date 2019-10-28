@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Role;
 use App\User;
 use App\Topic;
 use App\Message;
@@ -10,7 +11,6 @@ use App\Forms\TopicForm;
 use App\Forms\MessageForm;
 use Illuminate\Http\Request;
 use App\Notifications\ForumNewMsg;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Kris\LaravelFormBuilder\FormBuilder;
 use App\Repositories\MessageRepoInterface;
@@ -23,11 +23,12 @@ class ForumController extends Controller
     protected $topic;
     protected $message;
 
-
+    /**
+     * @return array|\Illuminate\Contracts\View\Factory|\Illuminate\View\View|mixed
+     */
     public function index()
     {
         $cats = Category::get();
-        $user = Auth::user();
         $user = Auth::user();
         $notifs = [];
 
@@ -83,7 +84,13 @@ class ForumController extends Controller
         ]);
     }
 
+
     use FormBuilderTrait;
+    /**
+     * @param FormBuilder $formBuilder
+     * @param $topic
+     * @return array|\Illuminate\Contracts\View\Factory|\Illuminate\View\View|mixed
+     */
     public function showMessages(FormBuilder $formBuilder, $topic)
     {
         $messages = Message::where('topic_id', '=', $topic)->get();
@@ -116,6 +123,11 @@ class ForumController extends Controller
         ]);
     }
 
+    /**
+     * @param Request $request
+     * @param $topic
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function writeMessage(Request $request, $topic)
     {
         $form = $this->form(MessageForm::class);
@@ -143,6 +155,12 @@ class ForumController extends Controller
             ]);
         }
     }
+
+    /**
+     * @param $topic
+     * @param $id
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function deleteMessage($topic, $id)
     {
         $topicMessages = Message::where('topic_id', '=', $topic)->get();
@@ -173,6 +191,11 @@ class ForumController extends Controller
         # code...
     }
 
+    /**
+     * @param FormBuilder $formBuilder
+     * @param $cat
+     * @return array|\Illuminate\Contracts\View\Factory|\Illuminate\View\View|mixed
+     */
     public function newTopic(FormBuilder $formBuilder, $cat)
     {
         $form = $this->form(TopicForm::class, [
@@ -187,6 +210,11 @@ class ForumController extends Controller
         ]);
     }
 
+    /**
+     * @param Request $request
+     * @param $cat
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function writeTopic(Request $request, $cat)
     {
         $form = $this->form(TopicForm::class);
@@ -221,6 +249,10 @@ class ForumController extends Controller
         }
     }
 
+    /**
+     * @param $topic
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function lockTopic($topic)
     {
         $topic = Topic::find($topic);
@@ -232,6 +264,10 @@ class ForumController extends Controller
         ]);
     }
 
+    /**
+     * @param $topic
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function unlockTopic($topic)
     {
         $topic = Topic::find($topic);
@@ -243,12 +279,42 @@ class ForumController extends Controller
         ]);
     }
 
+    /**
+     * @param $id
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function banUser($id)
     {
-        $user = $this->user->findOne($id);
-        $role= $this->role->findOne(4);
-        $role->users()->attach($user);
+        $user = User::find($id);
+        $role = Role::find(4);
+        $userRole = $user->roles()->get();
+        $banner = Auth::user()->roles()->get();
 
-        return redirect()->route();
+        if ($userRole->contains(1))
+        {
+            return redirect()->back()->with('error', $user->name . ' is an administrator and cannot be banned');
+        } elseif ($userRole->contains(2) && $banner->contains(2))
+        {
+            return redirect()->back()->with('error', 'you don\'t have the right to ban that user.');
+        } else
+        {
+            foreach ($userRole as $currentRole)
+            {
+                $user->roles()->detach($currentRole);
+            }
+
+            $user->roles()->attach($role);
+        }
+
+        return redirect()->back()->with('success', $user->name . ' has been banned');
+    }
+
+    public function unban($id)
+    {
+        $user = User::find($id);
+        $user->roles()->detach(4);
+        $user->roles()->attach(3);
+
+        return redirect()->back()->with('success', $user->name . ' has been unbanned');
     }
 }
