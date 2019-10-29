@@ -29,7 +29,7 @@
                     @endempty
                     <td><a href='/forum/{{ $category->id }}'>{{ $category->name }}</a></td>
                     <td>{{ $category->topics->count() }}</td>
-{{--                    <td>{{ $category->topics->max()->created_at }}</td>--}}
+                    <td>{{ $category->topics->max()->created_at->format('d-m-Y') }}</td>
                 </tr>
             @endforeach
         </tbody>

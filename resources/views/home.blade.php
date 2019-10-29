@@ -35,6 +35,3 @@
         </div>
     </aside>
 @endsection
-
-<!--<span class="badge badge-pill badge-success">Success</span>
-<span class="badge badge-pill badge-danger">Danger</span>

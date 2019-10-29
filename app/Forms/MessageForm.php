@@ -13,6 +13,8 @@ class MessageForm extends Form
                 'attr' => ['name' => 'wysiwyg', 'class' => 'wysiwyg'],
                 'label' => false
             ])
-            ->add('submit', 'submit');
+            ->add('submit', 'submit', [
+                'attr' =>['class' => 'btn btn-success margin-auto']
+            ]);
     }
 }

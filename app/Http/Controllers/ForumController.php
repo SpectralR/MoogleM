@@ -130,7 +130,7 @@ class ForumController extends Controller
      * @param $topic
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function writeMessage(Request $request, $topic)
+    public function writeMessage(Request $request, $topic, Message $message = null)
     {
         $form = $this->form(MessageForm::class);
         $user = Auth::user();
@@ -188,9 +188,30 @@ class ForumController extends Controller
         }
     }
 
-    public function updateMessage($topic, $id)
+    /**
+     * @param Topic $topic
+     * @param Message $message
+     * @return array|\Illuminate\Contracts\View\Factory|\Illuminate\View\View|mixed
+     */
+    public function updateMessage(Topic $topic, Message $message)
     {
-        # code...
+        return view('forum/topicCreation', [
+            'message' => $message,
+            'topic' =>$topic
+        ]);
+    }
+
+    /**
+     * @param Topic $topic
+     * @param Message $message
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function saveUpdateMessage(Topic $topic, Message $message, Request $request)
+    {
+        $message->message = $request->message;
+        $message->save();
+        return redirect()->route('forum_messages', ['topic' => $topic]);
     }
 
     /**

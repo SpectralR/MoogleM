@@ -8,6 +8,18 @@ div > .gear-icon{
     margin-bottom: 5px;
 }
 
+dl{
+    padding-top: 10px;
+}
+
+figcaption{
+    text-align: center;
+}
+
+figure{
+    margin: 0 5px 0 5px;
+}
+
 header{
     background-color: #303030;
 }
@@ -24,7 +36,7 @@ td > a:hover{
 }
 
 .admin{
-    color: darkred;
+    color: indianred;
 }
 
 .avatar{
@@ -32,6 +44,15 @@ td > a:hover{
     max-height: 96px;
     border: 1px solid  grey;
     border-radius: 5px;
+}
+
+.ban{
+    margin-bottom: 10px;
+}
+
+.banned{
+    color: lightgray;
+    text-decoration: line-through;
 }
 
 .breadcrumb{
@@ -43,26 +64,35 @@ td > a:hover{
 }
 
 .btn-crud-forum{
-    position: relative;
-    left: 710px;
+    position: absolute;
+    left: 950px;
+}
+
+.btn-danger{
+    background-color: #DE5A49;
+    border-color: #DE5A49;
+}
+
+.btn-danger:hover{
+    background-color: #912113;
+    border-color: #912113;
 }
 
 .char-card{
     width: 1024px;
     border: 1px silver solid;
     border-radius: 10px;
-    margin: auto;
     display: flex;
 }
 
 .char-gear{
-    margin: auto;
     margin-bottom: 1vh;
     margin-top: 1vh;
 }
 
 .char-pic{
-    width: 15vw;
+    width: 260px;
+    height: auto;
     margin: 1vh 1vh 1vh 1vh;
     border: 1px solid silver;
     border-radius: 10px;
@@ -72,12 +102,8 @@ td > a:hover{
     margin: 1vh 0 0 1vw;
 }
 
-.class{
-    margin: 0 1vw 1vh 1vw;
-}
-
-.classes > tr {
-    text-align: center;
+.classes{
+    margin: 1vh 1vw 1vh 1vw;
 }
 
 .current-job{
@@ -98,10 +124,15 @@ td > a:hover{
 .forum-dd{
     margin-left: 5px;
 }
+
 .forum-infos{
     border-radius: 5px;
     height: 100%;
     background-color: #303030;
+}
+
+.gear{
+    margin-top: 25px;
 }
 
 .gear-icon{
@@ -117,19 +148,36 @@ td > a:hover{
     max-height: 50px;
 }
 
+.margin-auto{
+    margin: auto;
+}
+
 .margin-1vw{
     margin-left: 1vw;
     margin-right: 1vw;
 }
 
 .member{
-    color: blueviolet;
+    color: mediumpurple;
 }
 
 .message-forum{
+    position: relative;
     width: 800px;
-    border-left: 1px solid silver;
     padding: 2vh 1vw 2vh 1vw;
+}
+
+.modo{
+    color: cornflowerblue;
+}
+
+.new-mes{
+    max-width: 50%;
+}
+
+.new-mes > form{
+    display: flex;
+    flex-direction: column;
 }
 
 .new-topic{
@@ -143,7 +191,7 @@ td > a:hover{
 .post-forum{
     background-color: #474747;
     margin: 0 1vw 1vw 1vw;
-    border: 1px solid silver;
+    border: 1px solid #49DE94;
     border-radius: 5px;
 }
 
@@ -164,6 +212,14 @@ td > a:hover{
     margin: 0 1vw 0 1vw;
 }
 
+.username{
+    margin: 5px;
+}
+
+.username:hover{
+    text-decoration: none;
+}
+
 #app{
     flex: 1;
     background-color: #303030;
@@ -179,7 +235,6 @@ td > a:hover{
 #container{
     max-width: 1280px;
     min-height: 100vh;
-    margin: auto;
     border-left: 1px solid gray;
     border-right: 1px solid grey;
     display: flex;
@@ -192,4 +247,8 @@ td > a:hover{
 
 #logout-form{
     display: none;
+}
+
+@media screen and (max-width: 768px){
+
 }

@@ -12,23 +12,19 @@ class RolesTableSeeder extends Seeder
     public function run()
     {
         DB::table('roles')->insert([
-            'name' => 'Administrator',
-            'color' => 'red'
+            'name' => 'Administrator'
         ]);
 
         DB::table('roles')->insert([
-            'name' => 'Moderator',
-            'color' => 'purple'
+            'name' => 'Moderator'
         ]);
 
         DB::table('roles')->insert([
-            'name' => 'Member',
-            'color' => 'blue'
+            'name' => 'Member'
         ]);
 
         DB::table('roles')->insert([
-            'name' => 'Banished',
-            'color' => 'purple'
+            'name' => 'Banned'
         ]);
     }
 }

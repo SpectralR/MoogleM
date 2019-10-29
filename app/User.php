@@ -65,6 +65,13 @@ class User extends Authenticatable
         return $this->roles()->where('id', '=', 4)->exists();
      }
 
+    public function getRoles()
+    {
+        $roles = $this->roles()->get();
+        $sorted = $roles->sortBy('id');
+        return $sorted->first();
+    }
+
     /**
     * message relations
     */

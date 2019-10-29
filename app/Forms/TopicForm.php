@@ -13,6 +13,8 @@ class TopicForm extends Form
             ->add('message', 'textarea',[
                 'attr' => ['class' => 'wysiwyg', 'name' => 'wysiwyg']
             ])
-            ->add('submit', 'submit');
+            ->add('submit', 'submit', [
+                'attr' =>['class' => 'btn btn-success margin-auto']
+            ]);
     }
 }

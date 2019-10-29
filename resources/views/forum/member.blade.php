@@ -2,19 +2,16 @@
 
 @section('content')
 
-<section class='char-card flex-column'>
+<section class='char-card flex-column margin-auto'>
     {{-- @php
      dd($user);
     @endphp --}}
     <h2 class="char-title">{{ $user->name }}</h2>
     <h3 class="char-title">{{ $char->Character->Name }}</h3>
-    <div class='d-flex flex-row char-gear'>
-        <div class='d-flex flex-column'>
+    <div class='d-flex flex-row char-gear margin-auto'>
+        <div class='d-flex flex-column gear'>
             {{-- foreach for weapons --}}
             @foreach ($char->Character->GearSet->Gear as $item)
-                {{-- @php
-                    dd($item);
-                @endphp --}}
                 @if ($item->Item->ItemUICategory->ID > 33 )
                     @continue
                 @else
@@ -25,9 +22,7 @@
 
             {{-- foreach for armors --}}
             @foreach ($char->Character->GearSet->Gear as $item)
-                {{-- @php
-                    dd($item);
-                @endphp --}}
+
                 @if ( $item->Item->ItemUICategory->ID > 39 || $item->Item->ItemUICategory->ID < 34)
                     @continue
                 @else
@@ -37,7 +32,7 @@
             @endforeach
         </div>
         <img src='{{ $char->Character->Portrait}}' alt="portrait" class='char-pic'>
-        <div class='d-flex flex-column'>
+        <div class='d-flex flex-column gear'>
             {{-- foreach for accessories --}}
             @foreach ($char->Character->GearSet->Gear as $item)
                 @if ($item->Item->ItemUICategory->ID < 40  || $item->Item->ItemUICategory->ID > 50 )
@@ -55,25 +50,16 @@
         </div>
     </div>
 
-    <table class="class">
-        <tbody class="classes">
-            <tr>
-                @foreach ($char->Character->ClassJobs as $job)
-                    @if ($job->Job->ID === $char->Character->ActiveClassJob->Job->ID)
-                        @continue
-                    @endif
-                    <td><img src="https://xivapi.com{{ $job->Job->Icon }}" alt="" class='job-icon'></td>
-                @endforeach
-            </tr>
-            <tr>
-                @foreach ($char->Character->ClassJobs as $job)
-                    @if ($job->Job->ID === $char->Character->ActiveClassJob->Job->ID)
-                        @continue
-                    @endif
-                    <td>{{$job->Level}}</td>
-                @endforeach
-            </tr>
-        </tbody>
-    </table>
+    <div class="d-flex flex-row flex-wrap classes">
+        @foreach ($char->Character->ClassJobs as $job)
+            @if ($job->Job->ID === $char->Character->ActiveClassJob->Job->ID)
+                @continue
+            @endif
+            <figure class="d-flex flex-column">
+                <img src="https://xivapi.com{{ $job->Job->Icon }}" alt="" class='job-icon'>
+                <figcaption> {{ $job->Level }}</figcaption>
+            </figure>
+            @endforeach
+    </div>
 </section>
 @endsection
