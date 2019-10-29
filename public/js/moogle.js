@@ -4,6 +4,13 @@ $(document).ready(function () {
         dots: true,
         arrows: false,
         respondTo: 'min',
-        slidesToShow: 2
+        slidesToShow: 2,
+        responsive: [{
+            breakpoint: 768,
+            settings: {
+                slidesToShow: 1
+            }
+        }]
+
     })
 })

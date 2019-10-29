@@ -121,6 +121,10 @@ td > a:hover{
     margin: 0 2vw 0 1vw;
 }
 
+.event-validate{
+    margin-left: 10px;
+}
+
 .forum-dd{
     margin-left: 5px;
 }
@@ -250,5 +254,7 @@ td > a:hover{
 }
 
 @media screen and (max-width: 768px){
-
+    .raids{
+        max-width: 90%;
+    }
 }
