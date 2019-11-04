@@ -1,13 +1,14 @@
 $(document).ready(function () {
     $('.slicked').slick({
-        autoplay: true,
-        dots: true,
+        autoplay: false,
+        dots: false,
         arrows: false,
-        respondTo: 'min',
+        centerMode: true,
         slidesToShow: 2,
         responsive: [{
             breakpoint: 768,
             settings: {
+                centerMode: true,
                 slidesToShow: 1
             }
         }]

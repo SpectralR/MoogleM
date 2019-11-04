@@ -8,40 +8,42 @@
     @endphp --}}
     <h2 class="char-title">{{ $user->name }}</h2>
     <h3 class="char-title">{{ $char->Character->Name }}</h3>
-    <div class='d-flex flex-row char-gear margin-auto'>
-        <div class='d-flex flex-column gear'>
-            {{-- foreach for weapons --}}
-            @foreach ($char->Character->GearSet->Gear as $item)
-                @if ($item->Item->ItemUICategory->ID > 33 )
-                    @continue
-                @else
-                    <img src="https://xivapi.com{{ $item->Item->Icon }}" alt="gear-icon" class='gear-icon' title='{{ $item->Item->Name }}'>
-                @endif
+    <div class='d-flex flex-row-resp char-gear margin-auto'>
+        <div class="d-flex flex-row">
+            <div class='d-flex flex-column gear'>
+                {{-- foreach for weapons --}}
+                @foreach ($char->Character->GearSet->Gear as $item)
+                    @if ($item->Item->ItemUICategory->ID > 33 )
+                        @continue
+                    @else
+                        <img src="https://xivapi.com{{ $item->Item->Icon }}" alt="gear-icon" class='gear-icon' title='{{ $item->Item->Name }}'>
+                    @endif
 
-            @endforeach
+                @endforeach
 
-            {{-- foreach for armors --}}
-            @foreach ($char->Character->GearSet->Gear as $item)
+                {{-- foreach for armors --}}
+                @foreach ($char->Character->GearSet->Gear as $item)
 
-                @if ( $item->Item->ItemUICategory->ID > 39 || $item->Item->ItemUICategory->ID < 34)
-                    @continue
-                @else
-                    <img src="https://xivapi.com{{ $item->Item->Icon }}" alt="gear-icon" class='gear-icon' title='{{ $item->Item->Name }}'>
-                @endif
+                    @if ( $item->Item->ItemUICategory->ID > 39 || $item->Item->ItemUICategory->ID < 34)
+                        @continue
+                    @else
+                        <img src="https://xivapi.com{{ $item->Item->Icon }}" alt="gear-icon" class='gear-icon' title='{{ $item->Item->Name }}'>
+                    @endif
 
-            @endforeach
-        </div>
-        <img src='{{ $char->Character->Portrait}}' alt="portrait" class='char-pic'>
-        <div class='d-flex flex-column gear'>
-            {{-- foreach for accessories --}}
-            @foreach ($char->Character->GearSet->Gear as $item)
-                @if ($item->Item->ItemUICategory->ID < 40  || $item->Item->ItemUICategory->ID > 50 )
-                    @continue
-                @else
-                    <img src="https://xivapi.com{{ $item->Item->Icon }}" alt="gear-icon" class='gear-icon' title='{{ $item->Item->Name }}'>
-                @endif
+                @endforeach
+            </div>
+            <img src='{{ $char->Character->Portrait}}' alt="portrait" class='char-pic'>
+            <div class='d-flex flex-column gear'>
+                {{-- foreach for accessories --}}
+                @foreach ($char->Character->GearSet->Gear as $item)
+                    @if ($item->Item->ItemUICategory->ID < 40  || $item->Item->ItemUICategory->ID > 50 )
+                        @continue
+                    @else
+                        <img src="https://xivapi.com{{ $item->Item->Icon }}" alt="gear-icon" class='gear-icon' title='{{ $item->Item->Name }}'>
+                    @endif
 
-            @endforeach
+                @endforeach
+            </div>
         </div>
         <div class="current-job">
             <h4>Current Job</h4>

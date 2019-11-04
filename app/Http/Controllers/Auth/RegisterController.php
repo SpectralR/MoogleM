@@ -32,7 +32,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/';
 
     /**
      * Create a new controller instance.
@@ -73,7 +73,7 @@ class RegisterController extends Controller
             'password' => ['required', 'string', 'min:8', 'confirmed'],
             'char_name' => ['required', 'string', 'regex:/([A-z])\w+\s([A-z])\w+/'],
             'char_serv' => ['required']
-        ], 
+        ],
         $messages);
     }
 
@@ -101,7 +101,7 @@ class RegisterController extends Controller
 
         $user->save();
         $user->roles()->attach($role);
-        
+
         $events = Event::all();
 
         foreach ($events as $event) {

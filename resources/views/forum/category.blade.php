@@ -22,22 +22,22 @@
                 <tr>
                     @foreach($notifs as $notif)
                         @if($notif == $topic->id)
-                            <td><i class="far fa-comments notif"></i></td>
+                            <td><i nounce="{{ csp_nonce() }}" class="far fa-comments notif"></i></td>
                         @else
-                            <td><i class="far fa-comments"></i></td>
+                            <td><i nounce="{{ csp_nonce() }}" class="far fa-comments"></i></td>
                         @endif
                     @endforeach
                     @empty($notifs)
-                            <td><i class="far fa-comments"></i></td>
+                            <td><i nounce="{{ csp_nonce() }}" class="far fa-comments"></i></td>
                     @endempty
                     <td><a href="{{ route('forum_messages', ['mes' => $topic->id]) }}">{{ $topic->title }}</a></td>
                     <td>{{ date('d-m-Y', strtotime($topic->created_at)) }}</td>
-                    <td>{{ $topic->messages->count() }}</td>
+                    <td class="center-text">{{ $topic->messages->count() }}</td>
                     @if ($topic->user_id == Auth::user()->id || Auth::user()->isAdministrator() || Auth::user()->isModerator())
                         @if ($topic->locked == true)
-                            <td><a href="{{ route('unlock_topic', ['topic' => $topic->id]) }}"><i class='fas fa-lock'></i></a></td>
+                            <td><a href="{{ route('unlock_topic', ['topic' => $topic->id]) }}"><i nounce="{{ csp_nonce() }}" class='fas fa-lock'></i></a></td>
                         @else
-                            <td><a href="{{ route('lock_topic', ['topic' => $topic->id]) }}"><i class='fas fa-lock-open'></i></a></td>
+                            <td><a href="{{ route('lock_topic', ['topic' => $topic->id]) }}"><i nounce="{{ csp_nonce() }}" class='fas fa-lock-open'></i></a></td>
                         @endif
                     @endif
                 </tr>

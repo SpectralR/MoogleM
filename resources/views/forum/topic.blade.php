@@ -14,7 +14,7 @@
     @endif
 
     @foreach ($messages as $message)
-        <section class='d-flex flex-row post-forum'>
+        <section class='d-flex flex-row-resp post-forum'>
             <aside class='d-flex flex-column align-items-center forum-infos'>
                 <a href="{{ route('member', ['id' => $message->user->id]) }}" class="username">{{ $message->user->name}}</a>
                 <img src="{{ $message->user->avatar}}" alt="avatar" class='avatar'>
@@ -51,7 +51,7 @@
                 </dl>
 
             </aside>
-            <article class='message-forum'>
+            <article class='message-forum d-flex flex-row-resp'>
                 @auth
                     @if ($message->user == Auth::user() || Auth::user()->isAdministrator() || Auth::user()->isModerator())
                         <div class="d-flex flex-row btn-crud-forum">

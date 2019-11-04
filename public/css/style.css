@@ -1,3 +1,7 @@
+*{
+    font-family: 'Comfortaa', cursive;
+}
+
 body{
     background-image: url('./imgs/bg.jpg');
     background-repeat: no-repeat;
@@ -78,6 +82,14 @@ td > a:hover{
     border-color: #912113;
 }
 
+.card-title{
+    overflow-wrap: initial;
+}
+
+.center-text{
+    text-align: center;
+}
+
 .char-card{
     width: 1024px;
     border: 1px silver solid;
@@ -112,9 +124,7 @@ td > a:hover{
 }
 
 .event{
-    width: 15vw;
     margin: 10px 1vw 0 1vw;
-
 }
 
 .event-table{
@@ -212,8 +222,9 @@ td > a:hover{
     margin: auto;
 }
 
-.slick-slide{
+.slick-slide.raid{
     margin: 0 1vw 0 1vw;
+    min-height: 189px;
 }
 
 .username{
@@ -229,11 +240,6 @@ td > a:hover{
     background-color: #303030;
     padding: 0 1vw 0 1vw;
 
-}
-
-#cke_wysiwyg{
-    position: relative;
-    left: 13vw;
 }
 
 #container{
@@ -253,8 +259,58 @@ td > a:hover{
     display: none;
 }
 
-@media screen and (max-width: 768px){
+@media screen and (max-width: 760px){
+    .btn-crud-forum{
+        left: unset;
+        position: unset;
+        margin-bottom: 10px;
+    }
+
+    .char-card{
+        width: 97%;
+    }
+
+    .char-gear.margin-auto{
+        margin: unset;
+    }
+
+    .char-pic{
+        margin: 0;
+    }
+
+    .current-job{
+        margin-top: 10px;
+    }
+
+    .event{
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .flex-row-resp{
+        flex-direction: column;
+    }
+
+    .gear{
+        margin: 0 3px 0 3px;
+    }
+
+    .message-forum{
+        width: unset;
+    }
+
+    .new-mes{
+        max-width: unset;
+        width: 90%;
+    }
+
     .raids{
         max-width: 90%;
+    }
+}
+
+@media screen and (max-width: 1230px) {
+    .btn-crud-forum{
+        left: 70vw;
     }
 }

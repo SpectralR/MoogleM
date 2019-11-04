@@ -24,6 +24,7 @@ Route::post('/events', 'EventController@participate')->middleware('loggedIn');
 
 Auth::routes();
 Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
+Route::post('/logout', 'Auth/LoginController@logout')->name('logout');
 
 Route::prefix('forum')->group(function(){
     Route::get('/', 'ForumController@index')->name('forum');
@@ -51,4 +52,4 @@ Route::prefix('admin')->middleware('adminModo')->group(function(){
     Route::post('/changerole', 'AdminController@changeRole')->name('change_role');
 });
 
-Route::get('/home', 'HomeController@index')->name('home');
+//Route::get('/home', 'HomeController@index')->name('home');

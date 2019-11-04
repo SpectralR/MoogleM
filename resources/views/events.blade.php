@@ -62,7 +62,7 @@
                                 </div>
                             </div>
                         @else
-                        <div class="card event border-light mb-3" style="max-width: 18rem;">
+                        <div class="card event border-light mb-3">
                                 <div class="card-header bg-transparent border-light"><h3>{{ $event->name }}</h3></div>
                                 <div class="card-body">
                                     <h5>{{ $event->date }}</h5>
@@ -80,7 +80,7 @@
                                             <input type="radio" name='participate' id='n' value='n'>
                                             <label for='n'>No</label>
                                         </div>
-                                        <button type='submit' class='btn btn-outline-success event-validate'><i class=' far fa-check-square'></i></button>
+                                        <button type='submit' class='btn btn-outline-success event-validate'><i nounce="{{ csp_nonce() }}" class=' far fa-check-square'></i></button>
                                     </form>
                                 </div>
                             </div>

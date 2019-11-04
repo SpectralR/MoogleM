@@ -20,7 +20,7 @@
                 <option value="{{ $event->id }}">{{ $event->name }}</option>
             @endforeach
         </select>
-        <button type="submit" class='btn btn-outline-success'><i class=' far fa-check-square'></i></button>
+        <button type="submit" class='btn btn-outline-success'><i nonce="{{ csp_nonce() }}" class=' far fa-check-square'></i></button>
     </form>
 
     @isset($results)
@@ -46,7 +46,7 @@
                         <option value="{{ $role->id }}">{{ $role->name }}</option>
                     @endforeach
                 </select>
-            <button type="submit" class='btn btn-outline-success'><i class=' far fa-check-square'></i></button>
+            <button type="submit" class='btn btn-outline-success'><i nonce="{{ csp_nonce() }}" class=' far fa-check-square'></i></button>
         </form>
 
 {{--    <h2>Static Management</h2>--}}
