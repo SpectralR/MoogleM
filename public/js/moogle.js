@@ -1,3 +1,6 @@
+/**
+ * slick slider
+ */
 $(document).ready(function () {
     $('.slicked').slick({
         autoplay: false,
@@ -14,4 +17,12 @@ $(document).ready(function () {
         }]
 
     })
+})
+
+/**
+ * logout form
+ */
+$('#logout-button').click(function(event){
+    event.preventDefault();
+    document.getElementById('logout-form').submit();
 })

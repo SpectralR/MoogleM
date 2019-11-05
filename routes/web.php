@@ -11,20 +11,24 @@
 |
 */
 
+
+
 Route::get('/', 'HomeController@index')->name('home');
 
 Route::get('/rules', function () {
     return view('rules');
 })->name('rules');
 
+Auth::routes();
+Auth::routes(['verify' => true]);
+
 Route::get('/events', 'EventController@event')->middleware('loggedIn')->name('events');
 Route::post('/events', 'EventController@participate')->middleware('loggedIn');
 
 // Route::get('/static', 'CharController@static')->name('static');
 
-Auth::routes();
+
 Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
-Route::post('/logout', 'Auth/LoginController@logout')->name('logout');
 
 Route::prefix('forum')->group(function(){
     Route::get('/', 'ForumController@index')->name('forum');

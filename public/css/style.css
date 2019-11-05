@@ -43,6 +43,10 @@ td > a:hover{
     color: indianred;
 }
 
+.admin-title{
+    margin-top: 40px;
+}
+
 .avatar{
     max-width: 96px;
     max-height: 96px;
@@ -119,8 +123,9 @@ td > a:hover{
 }
 
 .current-job{
-    margin-left: 2vw;
+    margin-left: 5vw;
     text-align: center;
+    margin-top: 5vh;
 }
 
 .event{
@@ -312,5 +317,9 @@ td > a:hover{
 @media screen and (max-width: 1230px) {
     .btn-crud-forum{
         left: 70vw;
+    }
+
+    .char-card{
+        width: 97%;
     }
 }

@@ -48,10 +48,10 @@ class RegisterController extends Controller
     {
         $this->validator($request->all())->validate();
 
-        event(new Registered($user = $this->create($request->all())));
+        $user = $this->create($request->all());
 
-        return $this->registered($request, $user)
-            ?: redirect($this->redirectPath());
+        return $user
+            ? redirect($this->redirectPath()) : redirect('register')->with('error', 'Character was not found!');
     }
 
     /**
@@ -90,24 +90,29 @@ class RegisterController extends Controller
         $char = $api->character->search(strtolower($data['char_name']), $data['char_serv']);
         $role = Role::where('name', '=', 'Member')->get();
 
-        $user = new User([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'character_id' => $char->Results[0]->ID,
-            'avatar' => $char->Results[0]->Avatar,
-            'password' => Hash::make($data['password'],
+        if (count($char->Results) == 0)
+        {
+            return false;
+        } else {
+            $user = new User([
+                'name' => $data['name'],
+                'email' => $data['email'],
+                'character_id' => $char->Results[0]->ID,
+                'avatar' => $char->Results[0]->Avatar,
+                'password' => Hash::make($data['password'],
             ),
-        ]);
+            ]);
 
-        $user->save();
-        $user->roles()->attach($role);
+            $user->save();
+            $user->roles()->attach($role);
 
-        $events = Event::all();
+            $events = Event::all();
 
-        foreach ($events as $event) {
+            foreach ($events as $event) {
+                $event->user()->attach($user->id);
+            }
 
-            $event->user()->attach($user->id);
+            return true;
         }
-
     }
 }

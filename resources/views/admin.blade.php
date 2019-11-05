@@ -33,7 +33,7 @@
    <h4>Clean event</h4>
    <a href="{{ route('clean_event') }}" type='button'>Clean!</a>
 
-    <h2>Role Management</h2>
+    <h2 class="admin-title">Role Management</h2>
     <form action="{{ route('change_role') }}" method='POST'   >
             @csrf
             <select name="user" id="user">
