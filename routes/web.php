@@ -21,27 +21,27 @@ Route::get('/rules', function () {
 
 Auth::routes(['verify' => true]);
 
-Route::get('/events', 'EventController@event')->middleware('loggedIn')->name('events');
-Route::post('/events', 'EventController@participate')->middleware('loggedIn');
+Route::get('/events', 'EventController@event')->middleware('loggedIn', 'verified')->name('events');
+Route::post('/events', 'EventController@participate')->middleware('loggedIn', 'verified');
 
 // Route::get('/static', 'CharController@static')->name('static');
 
 
-Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
+Route::get('/dashboard', 'DashboardController@index')->middleware('loggedIn', 'verified')->name('dashboard');
 
 Route::prefix('forum')->group(function(){
     Route::get('/', 'ForumController@index')->name('forum');
-    Route::get('/{cat}', 'ForumController@showCat')->middleware('loggedIn')->name('forum_cat');
-    Route::get('/{cat}/topic', 'ForumController@newTopic')->middleware('loggedIn')->name('forum_create_topic');
-    Route::post('/{cat}/topic', 'ForumController@writeTopic')->middleware('loggedIn')->name('forum_insert_topic');
-    Route::get('/cat/{topic}', 'ForumController@showMessages')->middleware('loggedIn')->name('forum_messages');
-    Route::post('/cat/{topic}', 'ForumController@writeMessage')->middleware('loggedIn')->name('write_message');
-    Route::get('/cat/{topic}/{id}/delete', 'ForumController@DeleteMessage')->middleware('loggedIn')->name('delete_message');
-    Route::get('/user/{id}', 'CharController@member')->name('member');
-    Route::get('/{topic}/lock', 'ForumController@lockTopic')->middleware('loggedIn')->name('lock_topic');
-    Route::get('/{topic}/unlock', 'ForumController@unlockTopic')->middleware('loggedIn')->name('unlock_topic');
-    Route::get('/cat/{topic}/{message}', 'ForumController@updateMessage')->middleware('loggedIn')->name('update');
-    Route::post('/cat/{topic}/{message}/update', 'ForumController@saveUpdateMessage')->middleware('loggedIn')->name('insert_update');
+    Route::get('/{cat}', 'ForumController@showCat')->middleware('loggedIn', 'verified')->name('forum_cat');
+    Route::get('/{cat}/topic', 'ForumController@newTopic')->middleware('loggedIn', 'verified')->name('forum_create_topic');
+    Route::post('/{cat}/topic', 'ForumController@writeTopic')->middleware('loggedIn', 'verified')->name('forum_insert_topic');
+    Route::get('/cat/{topic}', 'ForumController@showMessages')->middleware('loggedIn', 'verified')->name('forum_messages');
+    Route::post('/cat/{topic}', 'ForumController@writeMessage')->middleware('loggedIn', 'verified')->name('write_message');
+    Route::get('/cat/{topic}/{id}/delete', 'ForumController@DeleteMessage')->middleware('loggedIn', 'verified')->name('delete_message');
+    Route::get('/user/{id}', 'CharController@member')->middleware('loggedIn', 'verified')->name('member');
+    Route::get('/{topic}/lock', 'ForumController@lockTopic')->middleware('loggedIn', 'verified')->name('lock_topic');
+    Route::get('/{topic}/unlock', 'ForumController@unlockTopic')->middleware('loggedIn', 'verified')->name('unlock_topic');
+    Route::get('/cat/{topic}/{message}', 'ForumController@updateMessage')->middleware('loggedIn', 'verified')->name('update');
+    Route::post('/cat/{topic}/{message}/update', 'ForumController@saveUpdateMessage')->middleware('loggedIn', 'verified')->name('insert_update');
     Route::get('/ban/{id}', 'ForumController@banUser')->middleware('adminModo')->name('ban_user');
     Route::get('/unban/{id}', 'ForumController@unban')->middleware('adminModo')->name('unban_user');
 });
@@ -54,5 +54,3 @@ Route::prefix('admin')->middleware('adminModo')->group(function(){
     Route::get('/cleanevent', 'EventController@cleanEvent')->name('clean_event');
     Route::post('/changerole', 'AdminController@changeRole')->name('change_role');
 });
-
-//Route::get('/home', 'HomeController@index')->name('home');

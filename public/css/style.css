@@ -227,6 +227,10 @@ td > a:hover{
     margin: auto;
 }
 
+.radio{
+    margin: 5px 10px 0 0;
+}
+
 .slick-slide.raid{
     margin: 0 1vw 0 1vw;
     min-height: 189px;

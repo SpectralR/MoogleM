@@ -48,10 +48,11 @@ class RegisterController extends Controller
     {
         $this->validator($request->all())->validate();
 
-        $user = $this->create($request->all());
+        event(new Registered($user = $this->create($request->all())));
 
-        return $user
-            ? redirect($this->redirectPath()) : redirect('register')->with('error', 'Character was not found!');
+        return $this->registered($request, $user)
+            ? redirect($this->redirectPath()) : redirect('register')->with('error', 'Character was not found!') ;
+
     }
 
     /**
@@ -112,7 +113,7 @@ class RegisterController extends Controller
                 $event->user()->attach($user->id);
             }
 
-            return true;
+            return $user;
         }
     }
 }

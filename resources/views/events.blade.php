@@ -28,11 +28,11 @@
                                     <form method='post' action='/events' class='d-flex flex-row'>
                                         @csrf
                                         <input type="hidden" name="eventId" value='{{ $event->id }}'>
-                                        <div>
+                                        <div class="radio">
                                             <input type="radio" name='participate'id='y' value='y' checked disabled>
                                             <label for='y'>Yes</label>
                                         </div>
-                                        <div>
+                                        <div class="radio">
                                             <input type="radio" name='participate' id='n' value='n' disabled>
                                             <label for='n'>No</label>
                                         </div>
@@ -50,11 +50,11 @@
                                     <form method='post' action='/events' class='d-flex flex-row'>
                                         @csrf
                                         <input type="hidden" name="eventId" value='{{ $event->id }}'>
-                                        <div>
+                                        <div class="radio">
                                             <input type="radio" name='participate'id='y' value='y' disabled>
                                             <label for='y'>Yes</label>
                                         </div>
-                                        <div>
+                                        <div class="radio">
                                             <input type="radio" name='participate' id='n' value='n' checked disabled>
                                             <label for='n'>No</label>
                                         </div>
@@ -72,11 +72,11 @@
                                     <form method='post' action='/events' class='d-flex flex-row'>
                                         @csrf
                                         <input type="hidden" name="eventId" value='{{ $event->id }}'>
-                                        <div>
+                                        <div class="radio">
                                             <input type="radio" name='participate'id='y' value='y'>
                                             <label for='y'>Yes</label>
                                         </div>
-                                        <div>
+                                        <div class="radio">
                                             <input type="radio" name='participate' id='n' value='n'>
                                             <label for='n'>No</label>
                                         </div>
