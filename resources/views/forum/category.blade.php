@@ -3,9 +3,7 @@
 @section('content')
     {{ Breadcrumbs::render('category', $cat) }}
     @auth
-        @if(Auth::user()->roles() !== 'Banned')
             <a href="{{ route('forum_create_topic', ['cat' => $cat]) }}" class="new-topic"><i class="fas fa-comment-medical"></i></a>
-        @endif
     @endauth
     <table class='table table-dark table-hover'>
         <thead>

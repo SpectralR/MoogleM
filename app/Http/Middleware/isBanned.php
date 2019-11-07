@@ -5,7 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Support\Facades\Auth;
 
-class AdminModo
+class isBanned
 {
     /**
      * Handle an incoming request.
@@ -17,12 +17,12 @@ class AdminModo
     public function handle($request, Closure $next)
     {
         $user = Auth::user();
-        $roles = $user->roles()->get();
-        if ($roles->contains('1') || $roles->contains('2'))
-        {
-            return $next($request);
-        }
 
-        return redirect()->route('home');
+        if ($user->isBanned())
+        {
+            return redirect()->back();
+        }
+        return $next($request);
+
     }
 }

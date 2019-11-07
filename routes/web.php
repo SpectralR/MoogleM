@@ -32,7 +32,7 @@ Route::get('/dashboard', 'DashboardController@index')->middleware('loggedIn', 'v
 Route::prefix('forum')->group(function(){
     Route::get('/', 'ForumController@index')->name('forum');
     Route::get('/{cat}', 'ForumController@showCat')->middleware('loggedIn', 'verified')->name('forum_cat');
-    Route::get('/{cat}/topic', 'ForumController@newTopic')->middleware('loggedIn', 'verified')->name('forum_create_topic');
+    Route::get('/{cat}/topic', 'ForumController@newTopic')->middleware('loggedIn', 'verified', 'banned')->name('forum_create_topic');
     Route::post('/{cat}/topic', 'ForumController@writeTopic')->middleware('loggedIn', 'verified')->name('forum_insert_topic');
     Route::get('/cat/{topic}', 'ForumController@showMessages')->middleware('loggedIn', 'verified')->name('forum_messages');
     Route::post('/cat/{topic}', 'ForumController@writeMessage')->middleware('loggedIn', 'verified')->name('write_message');
