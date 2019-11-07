@@ -19,7 +19,6 @@ Route::get('/rules', function () {
     return view('rules');
 })->name('rules');
 
-Auth::routes();
 Auth::routes(['verify' => true]);
 
 Route::get('/events', 'EventController@event')->middleware('loggedIn')->name('events');
