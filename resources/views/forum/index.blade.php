@@ -17,8 +17,10 @@
                 @foreach($notifs as $notif)
                     @if($notif == $category->id)
                         <td><i nounce="{{ csp_nonce() }}" class="far fa-comments notif"></i></td>
+                        @break
                     @else
                         <td><i nounce="{{ csp_nonce() }}" class="far fa-comments"></i></td>
+                        @break
                     @endif
                 @endforeach
                 @empty($notifs)
