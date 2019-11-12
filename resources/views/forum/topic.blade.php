@@ -61,7 +61,9 @@
                         </div>
                     @endif
                 @endauth
-                {!! $message->message !!}
+                <div class="flex-column">
+                    {!! $message->message !!}
+                </div>
             </article>
         </section>
     @endforeach
