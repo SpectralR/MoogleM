@@ -19,6 +19,7 @@ class Policy extends Basic
         $this->addDirective(Directive::IMG, 'https://xivapi.com/');
         $this->addDirective(Directive::SCRIPT, 'https://kit.fontawesome.com/');
         $this->addDirective(Directive::SCRIPT, 'https://ajax.googleapis.com/');
+        $this->addDirective(Directive::SCRIPT, 'https://stackpath.bootstrapcdn.com/');
         $this->addDirective(Directive::STYLE, 'https://kit-free.fontawesome.com/');
         $this->addDirective(Directive::STYLE, 'https://fonts.googleapis.com/');
         $this->addNonceForDirective(Directive::STYLE);

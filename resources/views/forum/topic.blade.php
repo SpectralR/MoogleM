@@ -33,9 +33,9 @@
                 @endswitch
                 @if (Auth::user()->isAdministrator() || Auth::user()->isModerator())
                     @if($message->user->isBanned())
-                        <a href="{{ route('unban_user', ['id' => $message->user->id ]) }}" title="unban" class="ban"><i class="fas fa-user"></i></a>
+                        <a id="unban-btn" href="{{ route('unban_user', ['id' => $message->user->id ]) }}" title="unban" class="ban"><i class="fas fa-user"></i></a>
                     @else
-                        <a href="{{ route('ban_user', ['id' => $message->user->id ]) }}" title="ban" class="ban"><i
+                        <a id="ban-btn" href="{{ route('ban_user', ['id' => $message->user->id ]) }}" title="ban" class="ban"><i
                                 class="fas fa-user-slash"></i></a>
                     @endif
                 @endif
@@ -56,8 +56,7 @@
                     @if ($message->user == Auth::user() || Auth::user()->isAdministrator() || Auth::user()->isModerator())
                         <div class="d-flex flex-row btn-crud-forum">
                             <a href="{{ route('update', ['topic' => $message->topic->id, '$message' => $message->id]) }}" class='btn btn-warning'><i class='far fa-edit'></i></a>
-                            <a href="{{ route('delete_message', ['topic' => $message->topic->id, 'id' => $message->id]) }}"
-                                class='btn btn-danger'><i class='far fa-trash-alt'></i></a>
+                            <button data-target="{{ route('forum_messages', ['topic' => $message->topic->id]) }}" data-url="{{ route('delete_message', ['topic' => $message->topic->id, '$message' => $message->id]) }}" class='btn btn-danger delete-btn'><i class='far fa-trash-alt'></i></button>
                         </div>
                     @endif
                 @endauth
@@ -67,13 +66,11 @@
             </article>
         </section>
     @endforeach
-
     @auth
         @if ($message->topic->locked == false && Auth::user()->roles() !== 'Banned' )
             <div class="new-mes margin-auto">
                 {!! form($form) !!}
             </div>
-
         @endif
     @endauth
 @endsection

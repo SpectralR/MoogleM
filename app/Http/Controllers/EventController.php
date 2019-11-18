@@ -137,12 +137,9 @@ class EventController extends Controller
                 foreach ($users as $user) {
                     $user->events()->detach($event->id);
                 }
-
                 DB::tables('events')->where($event->id)->delete();
             }
-
         }
-
         return redirect()->route('admin');
     }
 }
