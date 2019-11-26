@@ -25,6 +25,9 @@
 
     @isset($results)
         <h4>List of participating people to {{ $name->name }}</h4>
+        @empty($results)
+            <p>no participant yet for this event</p>
+        @endempty
         @foreach ($results as $participant)
             <p>{{ $participant->name }}</p>
         @endforeach

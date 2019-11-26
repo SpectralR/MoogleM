@@ -102,12 +102,11 @@ class EventController extends Controller
         $users = User::select('id', 'name')->get();
         $roles = Role::select('id', 'name')->get();
         $events = Event::select('id', 'name')->get();
-        $event = Event::find($request->event)->first();
+        $event = Event::find($request->event);
         $eventParticipants = Event::join('event_user', 'event_id', '=', 'events.id')
-            ->where('id', '=', $event->id)
+            ->where('id', $event->id)
             ->where('participate', '=', 'y')
             ->get();
-
         $participants = [];
 
         foreach ($eventParticipants as $participant) {

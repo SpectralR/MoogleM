@@ -2,6 +2,11 @@
     font-family: 'Comfortaa', cursive;
 }
 
+a.dropdown-item:hover{
+    background-color: #00BC8C;
+    color: black;
+}
+
 body{
     background-image: url('./imgs/bg.jpg');
     background-repeat: no-repeat;
@@ -210,7 +215,7 @@ td > a:hover{
 .post-forum{
     background-color: #474747;
     margin: 0 1vw 1vw 1vw;
-    border: 1px solid #49DE94;
+    border: 1px solid #00BC8C;
     border-radius: 5px;
 }
 
