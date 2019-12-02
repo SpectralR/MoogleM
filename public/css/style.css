@@ -195,6 +195,10 @@ td > a:hover{
     color: cornflowerblue;
 }
 
+.navbar-light .navbar-toggler-icon{
+    background-image: url('imgs/menu.png');
+}
+
 .new-mes{
     max-width: 50%;
 }
@@ -247,6 +251,13 @@ td > a:hover{
 
 .username:hover{
     text-decoration: none;
+}
+
+.xiv-logo{
+    height: 20vh;
+    width: 20vw;
+    min-height: 200px;
+    min-width: 305px;
 }
 
 #app{

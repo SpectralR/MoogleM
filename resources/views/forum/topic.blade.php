@@ -53,7 +53,7 @@
             </aside>
             <article class='message-forum d-flex flex-row-resp'>
                 @auth
-                    @if ($message->user == Auth::user() || Auth::user()->isAdministrator() || Auth::user()->isModerator())
+                    @if ($message->user->id == Auth::user()->id || Auth::user()->isAdministrator() || Auth::user()->isModerator())
                         <div class="d-flex flex-row btn-crud-forum">
                             <a href="{{ route('update', ['topic' => $message->topic->id, '$message' => $message->id]) }}" class='btn btn-warning'><i class='far fa-edit'></i></a>
                             <button data-target="{{ route('forum_messages', ['topic' => $message->topic->id]) }}" data-url="{{ route('delete_message', ['topic' => $message->topic->id, '$message' => $message->id]) }}" class='btn btn-danger delete-btn'><i class='far fa-trash-alt'></i></button>

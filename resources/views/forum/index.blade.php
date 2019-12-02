@@ -14,18 +14,11 @@
         <tbody class='margin-1vw'>
         @foreach ($categories as $category)
             <tr>
-                @foreach($notifs as $notif)
-                    @if($notif == $category->id)
-                        <td><i nounce="{{ csp_nonce() }}" class="far fa-comments notif"></i></td>
-                        @break
-                    @else
-                        <td><i nounce="{{ csp_nonce() }}" class="far fa-comments"></i></td>
-                        @break
-                    @endif
-                @endforeach
-                @empty($notifs)
-                    <td><i nounce="{{ csp_nonce() }}" class="far fa-comments"></i></td>
-                @endempty
+                @if(in_array($category->id, $notifs))
+                    <td><i class="far fa-comments notif"></i></td>
+                @else
+                    <td><i class="far fa-comments"></i></td>
+                @endif
                 <td><a href='/forum/{{ $category->id }}'>{{ $category->name }}</a></td>
                 <td class="center-text">{{ $category->topics->count() }}</td>
                 @if(count($category->topics) === 0)
