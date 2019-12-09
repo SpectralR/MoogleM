@@ -175,16 +175,12 @@ class ForumController extends Controller
             Message::where('id', '=', $id)->delete();
             Topic::where('id', '=', $topic)->delete();
 
-            return redirect()->route('forum_cat', [
-                'cat' => $cat
-            ]);
+            return 0;
 
         } else {
             Message::where('id', '=', $id)->delete();
 
-            return redirect()->route('forum_messages',[
-                    'topic' => $topic
-                ]);
+            return 1;
         }
     }
 

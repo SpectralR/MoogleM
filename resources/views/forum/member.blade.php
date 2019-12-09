@@ -47,7 +47,7 @@
         </div>
         <div class="current-job">
             <h4>Current Job</h4>
-            <img src="https://xivapi.com{{ $char->Character->ActiveClassJob->Job->Icon }}" alt="{{ $char->Character->ActiveClassJob->Job->Name }}" class='job-icon' title="{{ $char->Character->ActiveClassJob->Job->Name }}">
+                <img src="https://xivapi.com{{ $char->Character->ActiveClassJob->Job->Icon }}" alt="{{ $char->Character->ActiveClassJob->Job->Name }}" class='job-icon' title="{{ $char->Character->ActiveClassJob->Job->Name }}">
             <p>{{ $char->Character->ActiveClassJob->Level }}</p>
         </div>
     </div>

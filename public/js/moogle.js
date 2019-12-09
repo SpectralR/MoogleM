@@ -31,9 +31,15 @@ $('#logout-button').click(function(event){
  * AJAX calls
  */
 function ajax(method, url){
-    var ajaxCall = new XMLHttpRequest();
-    ajaxCall.open(method, url);
-    ajaxCall.send();
+    // var ajaxCall = new XMLHttpRequest();
+    // ajaxCall.open(method, url);
+    // ajaxCall.send();
+
+    return Promise.resolve($.ajax({
+        url: url,
+        method: method,
+    }));
+
 }
 
 /**
@@ -43,12 +49,21 @@ let dels = Array.from(document.getElementsByClassName('delete-btn'));
 
 dels.forEach(function(del){
     del.addEventListener('click', function(){
+        let redirectPath = "";
         if (confirm("Are you sure?")){
             var urlDel = del.dataset.url;
-            var url = del.dataset.target;
-            ajax('GET', urlDel);
+            var result = ajax('GET', urlDel);
             alert('Message deleted');
-            window.location.assign(url)
+            result.then(data => {
+                if (data == 1){
+                    var url = del.dataset.target;
+                    window.location.assign(url);
+                } else{
+                    var url = del.dataset.targetBis;
+                    window.location.assign(url);
+                }
+            },
+                    error => console.log(error));
         }
     })
-})
+});
