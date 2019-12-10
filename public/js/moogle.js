@@ -31,10 +31,6 @@ $('#logout-button').click(function(event){
  * AJAX calls
  */
 function ajax(method, url){
-    // var ajaxCall = new XMLHttpRequest();
-    // ajaxCall.open(method, url);
-    // ajaxCall.send();
-
     return Promise.resolve($.ajax({
         url: url,
         method: method,
@@ -49,17 +45,17 @@ let dels = Array.from(document.getElementsByClassName('delete-btn'));
 
 dels.forEach(function(del){
     del.addEventListener('click', function(){
-        let redirectPath = "";
         if (confirm("Are you sure?")){
-            var urlDel = del.dataset.url;
-            var result = ajax('GET', urlDel);
+            let urlDel = del.dataset.url;
+            let idMsg = del.dataset.id;
+            let result = ajax('GET', urlDel);
             alert('Message deleted');
             result.then(data => {
-                if (data == 1){
-                    var url = del.dataset.target;
-                    window.location.assign(url);
+                if (data === '1'){
+                    let section = document.getElementById(idMsg);
+                    section.remove(section);
                 } else{
-                    var url = del.dataset.targetBis;
+                    let url = del.dataset.target;
                     window.location.assign(url);
                 }
             },
