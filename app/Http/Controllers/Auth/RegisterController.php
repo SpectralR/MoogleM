@@ -87,7 +87,7 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
         $api = new \XIVAPI\XIVAPI();
-        $api->environment->key('15d07397f2ee48f88c6e43897f6e7a8c71b310b5d79845adac2dc9dcfe54921b');
+        $api->environment->key(env('XIV_KEY'));
         $char = $api->character->search(strtolower($data['char_name']), $data['char_serv']);
         $role = Role::where('name', '=', 'Member')->get();
 
@@ -100,7 +100,7 @@ class RegisterController extends Controller
                 'email' => $data['email'],
                 'character_id' => $char->Results[0]->ID,
                 'avatar' => $char->Results[0]->Avatar,
-                'password' => Hash::make($data['password'],
+                'password' => Hash::make($data['password']
             ),
             ]);
 

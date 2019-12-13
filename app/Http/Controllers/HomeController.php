@@ -26,10 +26,11 @@ class HomeController extends Controller
     public function index()
     {
 //        $api = new \XIVAPI\XIVAPI();
-//        $api->environment->key('15d07397f2ee48f88c6e43897f6e7a8c71b310b5d79845adac2dc9dcfe54921b');
+//        $api->environment->key(env('XIV_KEY');
 //
 //        $instancesGet = $api->content->contentFinderCondition()->list();
-//
+////        $instancesGet = $api->content->instanceContent()->one(5027);
+//        dd($instancesGet);
 //        $instances = [];
 //        foreach ($instancesGet->Results as $id => $name) {
 //            dd($name->Name);
@@ -41,3 +42,4 @@ class HomeController extends Controller
         return view('home');
     }
 }
+
