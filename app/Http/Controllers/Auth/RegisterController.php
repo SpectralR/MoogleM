@@ -87,7 +87,7 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
         $api = new \XIVAPI\XIVAPI();
-        $api->environment->key(env('XIV_KEY'));
+        $api->environment->key(config('services.xiv.key'));
         $char = $api->character->search(strtolower($data['char_name']), $data['char_serv']);
         $role = Role::where('name', '=', 'Member')->get();
 

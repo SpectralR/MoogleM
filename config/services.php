@@ -34,4 +34,7 @@ return [
         'secret' => env('SPARKPOST_SECRET'),
     ],
 
+    'xiv' => [
+        'key' => env('XIV_KEY')
+    ],
 ];
