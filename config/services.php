@@ -37,4 +37,9 @@ return [
     'xiv' => [
         'key' => env('XIV_KEY')
     ],
+
+    'mailjet' => [
+        'key' => env('MAILJET_APIKEY'),
+        'secret' => env('MAILJET_APISECRET'),
+    ]
 ];
