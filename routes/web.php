@@ -19,7 +19,7 @@ Route::get('/rules', function () {
     return view('rules');
 })->name('rules');
 
-Auth::routes();
+/*Auth::routes();
 
 Route::get('/events', 'EventController@event')->middleware('loggedIn')->name('events');
 Route::post('/events', 'EventController@participate')->middleware('loggedIn');
@@ -54,3 +54,4 @@ Route::prefix('admin')->middleware('adminModo')->group(function(){
     Route::get('/cleanevent', 'EventController@cleanEvent')->name('clean_event');
     Route::post('/changerole', 'AdminController@changeRole')->name('change_role');
 });
+*/
